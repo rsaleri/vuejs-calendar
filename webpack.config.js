@@ -4,6 +4,8 @@ var path = require('path');
 var webpack = require('webpack');
 var webpackMerge = require('webpack-merge');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 
 var baseConfig = {
   output: {
@@ -88,7 +90,8 @@ let targets = [ 'web', 'node' ].map((target) => {
           ]
         : [
             new webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"' } }),
-            new webpack.optimize.UglifyJsPlugin({ sourceMap: true, compress: { warnings: false } }),
+            //new webpack.optimize.UglifyJsPlugin({ sourceMap: true, compress: { warnings: false } }),
+            new UglifyJSPlugin({ sourceMap: true}),
             new webpack.LoaderOptionsPlugin({ minimize: true }),
             new ExtractTextPlugin("style.css")
           ]

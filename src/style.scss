@@ -154,8 +154,7 @@ body {
 
 
         .day {
-
-
+          transition: background-color 0.5s ease;
         }
         &:last-child {
           .day {
@@ -169,7 +168,6 @@ body {
 
     #event-form {
 
-      display: none;
       box-shadow: 0 2px 4px $alto;
       position: fixed;
       width: $event-form-width;
@@ -178,9 +176,14 @@ body {
       padding: 1rem;
       background-color: white;
       border: 1px $alto solid;
+      transition: top 0.5s ease, left 0.5s ease;
 
-      &.active {
-        display: flex;
+      &.fade-enter-active, &.fade-leave-active {
+        transition: opacity .5s
+      }
+
+      &.fade-enter, &.fade-leave-to{
+        opacity: 0
       }
 
       flex-direction: column;
@@ -208,6 +211,9 @@ body {
           width: calc(100% - 0.75rem);
           padding: 0.25rem;
           font-size: 0.75rem;
+          &.error {
+            border-color: red;
+          }
         }
         margin-bottom: 0.75rem;
       }
